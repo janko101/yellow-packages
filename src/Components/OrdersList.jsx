@@ -5,7 +5,7 @@ export default function Orders() {
   // state
   const [orders, setOrders] = useState([]);
 
-  const activeOrders = orders.map(order => {
+  const ordersArray = orders.map(order => {
     return <Order key={order.id} orderData={order}/>
   })
 
@@ -16,9 +16,9 @@ export default function Orders() {
   }, [])
 
   return (
-    <div>
+    <div className="orders-container">
       <h1>Orders: </h1>
-      {activeOrders}
+      {ordersArray}
     </div>
   )
 }
