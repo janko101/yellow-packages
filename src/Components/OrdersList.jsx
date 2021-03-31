@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import Order from './Order';
 
 export default function Orders() {
   // state
   const [orders, setOrders] = useState([]);
 
   const activeOrders = orders.map(order => {
-    return <p>{JSON.stringify(order)}</p>
+    return <Order key={order.id} orderData={order}/>
   })
 
   useEffect(() => {
