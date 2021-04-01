@@ -1,10 +1,19 @@
 body {
   font-family: "Syne Mono", monospace;
-  max-width: 1000px;
+  max-width: 700px;
   padding: var(--space-small);
   margin: 0 auto;
   height: 100%;
   position: relative;
+}
+
+@media (min-width: 1020px) {
+  body {
+    background-image: url("../assets/background-image.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 2000px;
+  }
 }
 
 .App {
