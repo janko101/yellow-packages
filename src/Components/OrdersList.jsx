@@ -1,28 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import Order from './Order';
+import React, { useState, useEffect } from "react";
+import Order from "./Order";
 
 export default function Orders() {
-  // state
+  // State
   const [orders, setOrders] = useState([]);
+  const [status, setStatus] = useState("loading");
 
-  const ordersArray = orders.map(order => {
-    return <Order key={order.id} orderData={order}/>
-  })
+  const ordersArray = orders.map((order) => {
+    return <Order key={order.id} orderData={order} />;
+  });
 
-  async function fetchData() {
-    const response = await fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
-    const data = await response.json()
-    setOrders(data)
+  // Methods
+  useEffect(() => {
+    fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840h")
+      .then((response) => response.json())
+      .then(onFetchSuccess)
+      .catch(onFetchFail);
+  }, [setOrders, setStatus]);
+
+  function onFetchSuccess(data) {
+    setOrders(data);
+    setStatus("success");
   }
 
-  useEffect(() => {
-    fetchData();
-  }, [])
+  function onFetchFail(error) {
+    console.log("O-O. Something is wrong!", error)
+    setStatus("error");
+  }
 
   return (
     <div className="orders-container">
       <h1>Orders: </h1>
-      {ordersArray}
+      {status === 'success' && ordersArray}
     </div>
-  )
+  );
 }
