@@ -9,10 +9,14 @@ export default function Orders() {
     return <Order key={order.id} orderData={order}/>
   })
 
+  async function fetchData() {
+    const response = await fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
+    const data = await response.json()
+    setOrders(data)
+  }
+
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
-    .then(response => response.json())
-    .then(data => setOrders(data))
+    fetchData();
   }, [])
 
   return (

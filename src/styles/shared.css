@@ -1,0 +1,9 @@
+body {
+  font-family: "Syne Mono", monospace;
+  color: var(--color-brown);
+  max-width: 1000px;
+  padding: var(--space-medium);
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
