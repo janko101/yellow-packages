@@ -1,5 +1,9 @@
+//Packages
 import React, { useState, useEffect } from "react";
+
+//Project
 import Order from "./Order";
+import Loader from "./Loader";
 
 export default function Orders() {
   // State
@@ -12,7 +16,7 @@ export default function Orders() {
 
   // Methods
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840h")
+    fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
       .then((response) => response.json())
       .then(onFetchSuccess)
       .catch(onFetchFail);
@@ -31,6 +35,7 @@ export default function Orders() {
   return (
     <div className="orders-container">
       <h1>Orders: </h1>
+      {status === 'loading' && <Loader />}
       {status === 'success' && ordersArray}
     </div>
   );

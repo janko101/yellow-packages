@@ -1,2 +1,4 @@
 @import "./variables.css";
 @import "./shared.css";
+
+@import "./components/loader.css"
