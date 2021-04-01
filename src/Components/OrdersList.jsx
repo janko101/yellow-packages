@@ -4,13 +4,15 @@ import React, { useState, useEffect } from "react";
 //Project
 import Order from "./Order";
 import Loader from "./Loader";
+import Error from "./Error";
 
 export default function Orders() {
   // State
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState("loading");
 
-  const ordersArray = orders.map((order) => {
+  //Constants
+  let allOrders = orders.map((order) => {
     return <Order key={order.id} orderData={order} />;
   });
 
@@ -28,15 +30,16 @@ export default function Orders() {
   }
 
   function onFetchFail(error) {
-    console.log("O-O. Something is wrong!", error)
+    console.log("O-O. Something is wrong!", error);
     setStatus("error");
   }
 
   return (
     <div className="orders-container">
       <h1>Orders: </h1>
-      {status === 'loading' && <Loader />}
-      {status === 'success' && ordersArray}
+      {status === "loading" && <Loader />}
+      {status === "success" && allOrders}
+      {status === "error" && <Error />}
     </div>
   );
 }

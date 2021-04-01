@@ -1,4 +1,7 @@
 :root {
+  --color-yellow: #eec170;
+  --color-white: white;
+
   --space-extra-small: 4px;
   --space-small: 8px;
   --space-medium: 16px;

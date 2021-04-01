@@ -1,0 +1,12 @@
+.header {
+  text-align: center;
+  padding-top: var(--space-big);
+}
+
+.header .logo {
+  border-radius: 500px;
+  border: solid var(--space-extra-small) var(--color-white);
+  margin-bottom: var(--space-small);
+  width: 33%;
+  height: auto;
+}
