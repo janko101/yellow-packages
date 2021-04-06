@@ -7,16 +7,40 @@ import Order from "./Order";
 import Loader from "./Loader";
 import Error from "./Error";
 
-export default function Orders() {
+export default function Orders({ match }) {
   // State
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState("loading");
+  const [showOrders, setShowOrders] = useState("notDelivered");
 
   //Constants
+  const apiUrl = "https://my.api.mockaroo.com/orders.json?key=e49e6840";
+
   const allOrders = orders.map((order) => {
     return <Order key={order.id} orderData={order} />;
   });
-  const apiUrl = "https://my.api.mockaroo.com/orders.json?key=e49e6840";
+
+  const filterNotDeliveredOrders = orders.filter(
+    (order) => order.status !== "delivered"
+  );
+  const notDeliveredOrders = filterNotDeliveredOrders.map((order) => {
+    return <Order key={order.id} orderData={order} />;
+  });
+
+  const filterOrdersReadyForPickup = orders.filter(
+    (order) => order.status === "ready-for-pickup"
+  );
+  const ordersReadyForPickup = filterOrdersReadyForPickup.map((order) => {
+    return <Order key={order.id} orderData={order} />;
+  });
+
+  const filterOrdersOnTheWay = orders.filter(
+    (order) =>
+      order.status === "on-the-way" || order.status === "order-info-received"
+  );
+  const ordersOnTheWay = filterOrdersOnTheWay.map((order) => {
+    return <Order key={order.id} orderData={order} />;
+  });
 
   // Methods
   useEffect(() => {
@@ -36,8 +60,25 @@ export default function Orders() {
 
   return (
     <div className="orders-container">
+      
+      <section id="select-orders">
+        <select onChange={(e) => setShowOrders(e.target.value)} name="orders">
+          <option value="notDelivered">Active Orders</option>
+          <option value="allOrders">All Orders</option>
+          <option value="readyForPickup">Ready For Pickup</option>
+          <option value="onTheWay">On The Way</option>
+        </select>
+      </section>
+
       {status === "loading" && <Loader />}
-      {status === "success" && allOrders}
+      {status === "success" &&
+        showOrders === "notDelivered" &&
+        notDeliveredOrders}
+      {status === "success" && showOrders === "allOrders" && allOrders}
+      {status === "success" &&
+        showOrders === "readyForPickup" &&
+        ordersReadyForPickup}
+      {status === "success" && showOrders === "onTheWay" && ordersOnTheWay}
       {status === "error" && <Error />}
     </div>
   );
