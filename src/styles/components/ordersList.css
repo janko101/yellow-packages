@@ -10,6 +10,7 @@
 
 @media (max-width: 700px) {
   #select-orders{
-    width: 25px;
+    font-size: 11px;
+    width: 100px;
   }
 }
