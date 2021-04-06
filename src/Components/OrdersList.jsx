@@ -1,5 +1,6 @@
 //Packages
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 //Project
 import Order from "./Order";
@@ -12,27 +13,26 @@ export default function Orders() {
   const [status, setStatus] = useState("loading");
 
   //Constants
-  let allOrders = orders.map((order) => {
+  const allOrders = orders.map((order) => {
     return <Order key={order.id} orderData={order} />;
   });
+  const apiUrl = "https://my.api.mockaroo.com/orders.json?key=e49e6840";
 
   // Methods
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840k")
-      .then((response) => response.json())
-      .then(onFetchSuccess)
-      .catch(onFetchFail);
+    const fetchData = async () => {
+      try {
+        const result = await axios(apiUrl);
+
+        setOrders(result.data);
+        setStatus("success");
+      } catch (error) {
+        console.log(error);
+        setStatus("error");
+      }
+    };
+    fetchData();
   }, [setOrders, setStatus]);
-
-  function onFetchSuccess(data) {
-    setOrders(data);
-    setStatus("success");
-  }
-
-  function onFetchFail(error) {
-    console.log("O-O. Something is wrong!", error);
-    setStatus("error");
-  }
 
   return (
     <div className="orders-container">
