@@ -6,3 +6,38 @@
   -webkit-box-shadow: inset 0 0 var(--space-big) var(--color-yellow);
   box-shadow: inset 0 0 var(--space-big) var(--color-yellow);
 }
+
+#first-order-info {
+  padding: var(--space-extra-small);
+}
+
+#second-order-info {
+  padding: var(--space-medium);
+  padding-top: var(--space-medium);
+}
+
+.left-order-info {
+  font-size: 13px;
+}
+
+#package-id {
+  float: left;
+}
+
+.right-order-info {
+  font-size: 12px;
+}
+
+#status-info {
+  float: right;
+}
+
+#third-order-info {
+  padding: var(--space-extra-small);
+  padding-bottom: var(--space-medium);
+}
+
+#last-updated {
+  float: right;
+  color: grey;
+}

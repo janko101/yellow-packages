@@ -12,17 +12,34 @@ export default function Order({ orderData }) {
 
   return (
     <article className="order-info">
-      <p>{`Package ID: ${orderData.parcel_id}`}</p>
-      <p>{`Sender: ${orderData.sender}`}</p>
-      <p>{`Status: ${orderData.status}`}</p>
+      <div id="first-order-info">
+        <span
+          id="package-id"
+          className="left-order-info"
+        >{`Package ID: ${orderData.parcel_id}`}</span>
+        <span id="status-info" className="right-order-info">
+          {orderData.status}
+        </span>
+      </div>
 
-      {orderData.status !== "ready-for-pickup" &&
-        orderData.status !== "delivered" && (
-          <p>{`ETA: ${formattedDeliveryDate}h`}</p>
-        )}
+      <div id="second-order-info">
+        <p className="left-order-info">{`Sender: ${orderData.sender}`}</p>
 
-      <p>{`Pickup Location: ${orderData.location_name}`}</p>
-      <p>{`Last Updated: ${lastUpdatedTime}h`}</p>
+        {orderData.status !== "ready-for-pickup" &&
+          orderData.status !== "delivered" && (
+            <p className="left-order-info">{`ETA: ${formattedDeliveryDate}h`}</p>
+          )}
+
+        <p className="left-order-info">{`Pickup Location: ${orderData.location_name}`}</p>
+      </div>
+
+      <div id="third-order-info">
+        {" "}
+        <span
+          id="last-updated"
+          className="right-order-info"
+        >{`Last Updated: ${lastUpdatedTime}h`}</span>
+      </div>
     </article>
   );
 }

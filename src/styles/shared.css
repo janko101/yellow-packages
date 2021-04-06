@@ -1,7 +1,6 @@
 body {
   font-family: "Syne Mono", monospace;
   max-width: 700px;
-  padding: var(--space-small);
   margin: 0 auto;
   height: 100%;
   position: relative;
