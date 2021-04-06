@@ -36,7 +36,6 @@ export default function Orders() {
 
   return (
     <div className="orders-container">
-      <h1>Orders: </h1>
       {status === "loading" && <Loader />}
       {status === "success" && allOrders}
       {status === "error" && <Error />}
