@@ -7,16 +7,16 @@ body {
   position: relative;
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1025px) {
   body {
     background-image: url("../assets/background-image.png");
     background-repeat: no-repeat;
-    background-position: center;
-    height: 2000px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-y: 80px;
   }
 }
 
 .App {
   background-color: var(--color-yellow);
-
 }
