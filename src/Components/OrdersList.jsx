@@ -60,25 +60,28 @@ export default function Orders({ match }) {
 
   return (
     <div className="orders-container">
-      
-      <section id="select-orders">
-        <select onChange={(e) => setShowOrders(e.target.value)} name="orders">
+      <section className="select-menu">
+        <select onChange={(e) => setShowOrders(e.target.value)} id="select-orders">
           <option value="notDelivered">Active Orders</option>
           <option value="allOrders">All Orders</option>
           <option value="readyForPickup">Ready For Pickup</option>
           <option value="onTheWay">On The Way</option>
         </select>
       </section>
-
       {status === "loading" && <Loader />}
+
       {status === "success" &&
         showOrders === "notDelivered" &&
         notDeliveredOrders}
+
       {status === "success" && showOrders === "allOrders" && allOrders}
+
       {status === "success" &&
         showOrders === "readyForPickup" &&
         ordersReadyForPickup}
+
       {status === "success" && showOrders === "onTheWay" && ordersOnTheWay}
+
       {status === "error" && <Error />}
     </div>
   );

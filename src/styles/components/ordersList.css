@@ -1,0 +1,15 @@
+.select-menu {
+  text-align: right;
+  padding-right: var(--space-medium);
+}
+
+#select-orders {
+  border-radius: 300px;
+  border: solid var(--space-extra-small) var(--color-white);
+}
+
+@media (max-width: 700px) {
+  #select-orders{
+    width: 25px;
+  }
+}
